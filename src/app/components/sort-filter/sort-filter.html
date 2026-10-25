@@ -1,0 +1,38 @@
+<!-- <p>sort-filter works!</p> -->
+<div class="container">
+    <div class="row">
+        <div>
+            <label>Sort by</label>
+            <select #sort (change)="selectSort(sort.value)">
+                <option value="">--</option>
+                <option value="price-asc">Price : low to high</option>
+                <option value="price-desc">Price : high to low</option>
+                <option value="power-asc">Power : low to high</option>
+                <option value="power-desc">Power : high to low</option>
+            </select>
+        </div>
+        <div>
+            <!-- 0 ou vide = pas de limite de prix -->
+            <label>Max price</label>
+            <input type="number" min="0" placeholder="e.g. 300" #maxPrice class="price"
+            (input)="selectMaxPrice(maxPrice.value)">
+            <span class="unit">thousand DNT</span>
+        </div>
+        <div>
+            <label class="checkbox">
+                <input type="checkbox" #inStock (change)="selectInStock(inStock.checked)">
+                In stock only
+            </label>
+        </div>
+        <!-- on passe les elements du formulaire (#sort, #maxPrice, #inStock) a reset() -->
+        <button class="reset" (click)="reset(sort, maxPrice, inStock)">Reset</button>
+    </div>
+
+    <!-- boutons de marque -->
+    <div class="brands">
+        <button [class.active]="selectedBrand == ''" (click)="selectBrand('')">All</button>
+        @for(brand of brands; track brand){
+            <button [class.active]="selectedBrand == brand" (click)="selectBrand(brand)">{{brand}}</button>
+        }
+    </div>
+</div>

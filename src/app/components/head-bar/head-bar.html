@@ -1,0 +1,18 @@
+<!-- <p>head-bar works!</p> -->
+<div class="header">
+    <h1>Welcome to my Showroom</h1>
+    <!-- ajout : boutons favoris et reservations -->
+    <div class="actions">
+        <!-- class active quand on affiche seulement les favoris -->
+        <button [class.active]="onlyFavorites" (click)="showFavorites()">
+            My favorites ({{favoritesCount}})
+        </button>
+        <button (click)="showCart()">
+            My reservations ({{reservationsCount}})
+        </button>
+        <!-- ajout : bouton mode sombre / clair -->
+        <button (click)="toggleTheme()">
+            {{ darkMode ? 'Light mode' : 'Dark mode' }}
+        </button>
+    </div>
+</div>

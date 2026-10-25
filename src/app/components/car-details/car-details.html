@@ -1,0 +1,62 @@
+<!-- <p>car-details works!</p> -->
+<!-- clic sur le fond gris = fermer la popup -->
+<div class="overlay" (click)="close()">
+    <!-- stopPropagation : un clic dans la fiche ne ferme pas la popup -->
+    <div class="details-card" (click)="$event.stopPropagation()">
+        <button class="close" (click)="close()">✕</button>
+        <img [src]="'images/' + car.photo">
+        <div class="infos">
+            <h2>{{car.brand}} {{car.model}}</h2>
+            <p>
+                power : {{car.power}} <br>
+                price : {{car.price | dnt}}
+            </p>
+
+            <!-- message selon le stock disponible -->
+            @if(car.availability == 0){
+                <p class="out-of-stock">Out of stock</p>
+            }
+            @else if(car.availability <= 2){
+                <p class="low-stock">Only {{car.availability}} left in stock</p>
+            }
+            @else {
+                <p class="in-stock">{{car.availability}} in stock</p>
+            }
+
+            <h3>Description</h3>
+            <p>{{car.description}}</p>
+
+            <!-- simulateur de mensualites -->
+            <div class="simulator">
+                <h3>Financing simulator</h3>
+                <label>
+                    Down payment: {{downPercent}}% ({{downAmount() | dnt:false}})
+                    <input type="range" min="0" max="50" step="10" #down
+                    [value]="downPercent" (input)="setDownPercent(down.value)">
+                </label>
+                <label>
+                    Duration
+                    <select #duration (change)="setMonths(duration.value)">
+                        <option value="12">12 months</option>
+                        <option value="24">24 months</option>
+                        <option value="36" selected>36 months</option>
+                        <option value="48">48 months</option>
+                    </select>
+                </label>
+                <p class="monthly">
+                    <strong>{{monthly() | dnt:false}}</strong> / month
+                    <span>{{rate}}% APR · loan amount {{loanAmount() | dnt:false}}</span>
+                </p>
+            </div>
+
+            @if(reserved){
+                <p class="reserved-msg">You have already reserved this car</p>
+            }
+            <!-- desactive si deja reservee ou plus de stock -->
+            <button class="reserve" (click)="reserve()"
+            [disabled]="reserved || car.availability == 0">
+                {{ reserved ? 'Reserved' : 'Reserve' }}
+            </button>
+        </div>
+    </div>
+</div>

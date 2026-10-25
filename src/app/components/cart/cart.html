@@ -1,0 +1,28 @@
+<!-- <p>cart works!</p> -->
+<div class="overlay" (click)="close()">
+    <div class="popup" (click)="$event.stopPropagation()">
+        <button class="close" (click)="close()">✕</button>
+        <h2>My reservations</h2>
+
+        @for(car of cars; track car.id){
+            <div class="item">
+                <img [src]="'images/' + car.photo">
+                <div class="name">
+                    <strong>{{car.brand}} {{car.model}}</strong>
+                    <span>{{car.price | dnt}}</span>
+                </div>
+                <button class="cancel" (click)="cancel(car)">Cancel</button>
+            </div>
+        }
+        @empty {
+            <p class="empty">No reservations yet.</p>
+        }
+
+        @if(cars.length > 0){
+            <div class="total">
+                <span>Total</span>
+                <strong>{{total() | dnt}}</strong>
+            </div>
+        }
+    </div>
+</div>

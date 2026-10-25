@@ -1,0 +1,55 @@
+<!-- <p>search-bar works!</p> -->
+<div class="container">
+    <label>Brand</label>
+    <input type="text" #brand
+    (input)="selectAutos(brand.value)">
+    <fa-icon [icon]="faMagnifyingGlass" />
+</div>
+
+<!-- ajout : compteur de resultats -->
+@if(selectedAutos.length > 0){
+    <p class="count">{{selectedAutos.length}} car(s) found</p>
+}
+
+<div class="cars-container">
+    <!-- // terme decorateur avec@   -->
+    @for(auto of selectedAutos; track auto.id) {
+        <div class="auto-card">
+            <!-- ajout : favori (Save / Saved) -->
+            <button class="favorite" [class.liked]="favoriteIds.includes(auto.id)"
+            (click)="toggleFavorite(auto)">
+                {{ favoriteIds.includes(auto.id) ? 'Saved' : 'Save' }}
+            </button>
+             <!-- ${}cree une chaine de carac qui contient des partie fixes et des parties dynamique -->
+            <img [src]="'images/' + auto.photo">
+            <div class="details">
+                <h3>{{auto.brand}} {{auto.model}}</h3>
+                <p>
+                    power : {{auto.power}} <br>
+                    price : {{auto.price | dnt}} <br>
+                    <!-- ajout : "Rupture" tout court quand le stock est a 0 -->
+                    @if(auto.availability == 0){
+                        <span class="out-of-stock">Out of stock</span>
+                    }
+                    @else {
+                        only {{auto.availability}} units in stock
+                    }
+                </p>
+            </div>
+            <div class="see_more">
+                <!-- ajout : case comparer, bloquee quand 3 voitures sont deja choisies -->
+                <label class="compare">
+                    <input type="checkbox" [checked]="compareCars.includes(auto)"
+                    [disabled]="compareCars.length >= 3 && !compareCars.includes(auto)"
+                    (change)="toggleCompare(auto)">
+                    Compare
+                </label>
+                <button (click)="selectCar(auto)">See more ... </button>
+            </div>
+        </div>
+    }
+    @empty {
+        <!-- ajout : @empty s affiche quand la liste est vide -->
+        <p class="no-result">No car matches your search</p>
+    }
+</div>

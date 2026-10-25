@@ -1,0 +1,11 @@
+<!-- <p>recent-cars works!</p> -->
+<div class="recent">
+    <span class="title">Recently viewed</span>
+    @for(car of cars; track car.id){
+        <!-- un clic rouvre la fiche de la voiture -->
+        <button (click)="select(car)">
+            <img [src]="'images/' + car.photo">
+            {{car.model}}
+        </button>
+    }
+</div>

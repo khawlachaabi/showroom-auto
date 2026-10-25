@@ -1,0 +1,167 @@
+/* barre de recherche */
+.container{
+    margin: 22px auto 34px;
+    padding: 12px 18px;
+    width: min(520px, 92%);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.2s;
+}
+.container:focus-within{
+    border-color: var(--accent);
+}
+
+.container input{
+    all: unset;
+    flex: 1;
+    color: var(--text);
+}
+
+.container fa-icon{
+    cursor: pointer;
+    color: var(--muted);
+}
+
+.container label{
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+/* compteur de resultats */
+.count{
+    max-width: 1300px;
+    margin: 0 auto 14px;
+    padding: 0 32px;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+/* grille des voitures : s adapte toute seule a la largeur de l ecran */
+.cars-container{
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 32px 56px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.auto-card{
+    position: relative;
+    padding: 18px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+.auto-card:hover{
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+img{
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+}
+
+h3{
+    margin: 14px 0 6px;
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text);
+}
+
+.details p{
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.out-of-stock{
+    color: var(--danger);
+    font-weight: 500;
+}
+
+.see_more{
+    margin-top: auto;
+    padding-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+}
+.details{
+    margin-bottom: 16px;
+}
+
+button{
+    all: unset;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+button:hover{
+    color: var(--accent);
+}
+
+.no-result{
+    grid-column: 1 / -1;
+    padding: 48px;
+    text-align: center;
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--muted);
+}
+
+/* lien favori (Save / Saved) en haut a droite de la carte */
+.favorite{
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+.favorite:hover{
+    color: var(--text);
+    border-bottom-color: currentColor;
+}
+.favorite.liked{
+    color: var(--accent);
+}
+
+/* case comparer */
+.compare{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    cursor: pointer;
+}
+.compare input{
+    accent-color: var(--primary);
+    cursor: pointer;
+}

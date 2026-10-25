@@ -1,0 +1,53 @@
+.header{
+    padding: 56px 20px 32px;
+    text-align: center;
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--border);
+}
+h1{
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 3.2rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--text);
+}
+/* petit trait bronze sous le titre */
+h1::after{
+    content: "";
+    display: block;
+    width: 48px;
+    height: 1px;
+    margin: 18px auto 0;
+    background-color: var(--accent);
+}
+.actions{
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+button{
+    padding: 9px 18px;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+button:hover{
+    border-color: var(--accent);
+    color: var(--accent);
+}
+button.active{
+    color: var(--on-primary);
+    background-color: var(--primary);
+    border-color: var(--primary);
+}

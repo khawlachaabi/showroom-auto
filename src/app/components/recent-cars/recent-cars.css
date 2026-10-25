@@ -1,0 +1,38 @@
+.recent{
+    width: min(960px, 92%);
+    margin: 18px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.title{
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+button{
+    padding: 4px 14px 4px 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: inherit;
+    font-size: 0.88rem;
+    color: var(--text);
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+button:hover{
+    border-color: var(--accent);
+}
+img{
+    width: 52px;
+    height: 32px;
+    object-fit: contain;
+}

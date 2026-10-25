@@ -1,0 +1,4 @@
+/* espace vide pour que la barre du comparateur ne cache pas les dernieres cartes */
+.compare-space{
+    height: 90px;
+}

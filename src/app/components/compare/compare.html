@@ -1,0 +1,65 @@
+<!-- <p>compare works!</p> -->
+<!-- barre fixe en bas de l ecran -->
+<div class="bar">
+    <div class="chips">
+        @for(car of cars; track car.id){
+            <span class="chip">
+                {{car.model}}
+                <button (click)="remove(car)">✕</button>
+            </span>
+        }
+        @if(cars.length < 2){
+            <span class="hint">Select at least 2 cars</span>
+        }
+    </div>
+    <div class="buttons">
+        <button class="clear" (click)="clear()">Clear</button>
+        <button class="open" [disabled]="cars.length < 2" (click)="open()">
+            Compare ({{cars.length}}/3)
+        </button>
+    </div>
+</div>
+
+<!-- popup avec le tableau -->
+@if(showTable && cars.length >= 2){
+    <div class="overlay" (click)="close()">
+        <div class="popup" (click)="$event.stopPropagation()">
+            <button class="close" (click)="close()">✕</button>
+            <h2>Comparison</h2>
+            <table>
+                <tr>
+                    <th></th>
+                    @for(car of cars; track car.id){
+                        <th>
+                            <img [src]="'images/' + car.photo">
+                            {{car.brand}} {{car.model}}
+                        </th>
+                    }
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    @for(car of cars; track car.id){
+                        <!-- class best = la meilleure valeur de la ligne -->
+                        <td [class.best]="car.price == bestPrice()">{{car.price | dnt}}</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Power</td>
+                    @for(car of cars; track car.id){
+                        <td [class.best]="car.power == bestPower()">{{car.power}}</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Stock</td>
+                    @for(car of cars; track car.id){
+                        <td [class.best]="car.availability == bestStock()">
+                            @if(car.availability == 0){ Out of stock }
+                            @else { {{car.availability}} units }
+                        </td>
+                    }
+                </tr>
+            </table>
+            <p class="legend"><span class="best">Highlighted</span> = best value</p>
+        </div>
+    </div>
+}

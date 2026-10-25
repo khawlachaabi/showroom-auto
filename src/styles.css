@@ -1,1 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* couleurs et polices communes, utilisees dans tous les composants avec var(--nom) */
+:root{
+    --bg: #f6f3ee;            /* ivoire */
+    --card: #ffffff;
+    --text: #22201d;          /* anthracite */
+    --muted: #8b847b;         /* taupe */
+    --border: #e7e1d8;
+    --primary: #22201d;       /* boutons principaux */
+    --on-primary: #f6f3ee;    /* texte sur les boutons principaux */
+    --accent: #a8865a;        /* bronze / champagne */
+    --accent-soft: #efe6d8;
+    --success: #5f7d63;       /* vert sauge */
+    --success-soft: #e8eee6;
+    --warning: #a87a3d;       /* ocre */
+    --warning-soft: #f5ecdf;
+    --danger: #a5524a;        /* brique */
+    --danger-soft: #f4e4e1;
+    --overlay: rgba(20, 19, 17, 0.45);
+    --shadow: 0 1px 2px rgba(34, 32, 29, 0.04), 0 4px 16px rgba(34, 32, 29, 0.04);
+    --shadow-hover: 0 14px 32px rgba(34, 32, 29, 0.09);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Jost", "Segoe UI", system-ui, sans-serif;
+}
+
+/* mode sombre : app ajoute la classe "dark" sur la balise <html>,
+   on change seulement les variables, tous les composants suivent */
+:root.dark{
+    --bg: #141311;
+    --card: #1c1a17;
+    --text: #ece7df;
+    --muted: #9a9288;
+    --border: #2e2a25;
+    --primary: #ece7df;
+    --on-primary: #141311;
+    --accent: #c4a274;
+    --accent-soft: #2a241c;
+    --success: #8fb293;
+    --success-soft: #1f2a20;
+    --warning: #d1a467;
+    --warning-soft: #2c2418;
+    --danger: #d48a80;
+    --danger-soft: #2e1d1b;
+    --overlay: rgba(0, 0, 0, 0.6);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 14px 32px rgba(0, 0, 0, 0.45);
+    color-scheme: dark;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    background-color: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* certaines photos ont un fond blanc : en mode sombre on met
+   un fond blanc arrondi a toutes les photos pour que ce soit uniforme */
+:root.dark img{
+    background-color: #f4f1ec;
+    border-radius: var(--radius-sm);
+}
